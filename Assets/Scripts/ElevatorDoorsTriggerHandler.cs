@@ -12,13 +12,13 @@ public class ElevatorDoorsTriggerHandler : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == _characterTag)
+		if (other.CompareTag(_characterTag))
 			CharacterBetweenDoorsEntered?.Invoke();
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.tag == _characterTag)
+		if (other.CompareTag(_characterTag))
 			CharacterBetweenDoorsExited?.Invoke();
 	}
 }
