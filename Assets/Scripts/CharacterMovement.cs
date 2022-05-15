@@ -23,12 +23,8 @@ public class CharacterMovement : MonoBehaviour
 
 	private void MoveHorizontally(Vector3 direction)
 	{
-		_characterController.Move(Time.deltaTime * _playerSpeed * direction);
-	}
-
-	private void Rotate(Vector3 direction)
-	{
-		_characterController.transform.forward = direction;
+		_characterController.Move(Time.deltaTime * _playerSpeed * direction.z * _characterController.transform.forward);
+		_characterController.Move(Time.deltaTime * _playerSpeed * direction.x * _characterController.transform.right);
 	}
 
 	private void ResetVelocityOnGround()
@@ -56,9 +52,6 @@ public class CharacterMovement : MonoBehaviour
 		Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
 		MoveHorizontally(moveDirection);
-
-		if (moveDirection != Vector3.zero)
-			Rotate(moveDirection);
 
 		if (Input.GetButtonDown("Jump") && _characterGrounded)
 			Jump();
