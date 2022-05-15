@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8398856e7e75b4da920841238ec885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _elevatorDoorsHandler: {fileID: 830461790}
+  _elevatorDoorsTriggerHandler: {fileID: 830461790}
   _animator: {fileID: 1529343794489394895}
   _animatorParameterName: DoorsOpenness
 --- !u!1 &776854234583202960
