@@ -7,7 +7,7 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 	[SerializeField] private Animator _animator;
 	[SerializeField] private string _animatorParameterName;
 
-	private float _doorsOpenness;
+	private float _doorsOpenness = 1;
 	private Tween _activeTween;
 
 	protected virtual void OnCharacterBetweenDoorsEntered()
@@ -17,7 +17,7 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 
 	protected virtual void OnCharacterBetweenDoorsExited()
 	{
-		CloseDoors();
+		//CloseDoors();
 	}
 
 	private void OpenDoors()
@@ -27,7 +27,7 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
 
 		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 1, 1 - _doorsOpenness)
-		.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness));
+			.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness));
 	}
 
 	private void CloseDoors()
@@ -37,7 +37,7 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
 
 		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 0, _doorsOpenness)
-		.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness));
+			.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness));
 	}
 
 	private void Start()
