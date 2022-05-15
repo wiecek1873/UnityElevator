@@ -38,5 +38,8 @@ public class CharacterRaycaster : MonoBehaviour
 			OnRaycastHit(raycastHit);
 		else
 			OnRaycastMiss();
+
+		if (CurrentFocus != null && Input.GetMouseButtonUp(0))
+			CurrentFocus.Use();
 	}
 }
