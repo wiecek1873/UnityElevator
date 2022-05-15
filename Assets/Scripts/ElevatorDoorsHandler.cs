@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ElevatorDoorsHandler : MonoBehaviour
 {
-	[SerializeField] private Animator _animator;
-	[SerializeField] private string _characterTag = "Character";
+	public event Action CharacterBetweenDoorsEntered;
+	public event Action CharacterBetweenDoorsExited;
 
-	private bool _characterBetweenDoors;
+	[SerializeField] private string _characterTag = "Character";
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == _characterTag)
-			_characterBetweenDoors = true;
+			CharacterBetweenDoorsEntered.Invoke();
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.tag == _characterTag)
-			_characterBetweenDoors = false;
+			CharacterBetweenDoorsExited.Invoke();
 	}
 }
