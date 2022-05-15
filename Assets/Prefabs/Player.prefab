@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 8732072541762801950}
-  _playerSpeed: 2
+  _playerSpeed: 10
   _jumpHeight: 1
 --- !u!1 &8732072542034572645
 GameObject:

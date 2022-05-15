@@ -579,6 +579,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776854234497688561}
+  - component: {fileID: 830461791}
+  - component: {fileID: 830461790}
+  - component: {fileID: 830461792}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -602,6 +605,47 @@ Transform:
   m_Father: {fileID: 776854234583202963}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &830461791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776854234497688558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 4, z: 0.2}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &830461790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776854234497688558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33210d0cdd306194996035ff886b562c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterTag: Character
+--- !u!114 &830461792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776854234497688558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8398856e7e75b4da920841238ec885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _elevatorDoorsHandler: {fileID: 830461790}
+  _animator: {fileID: 1529343794489394895}
+  _animatorParameterName: DoorsOpenness
 --- !u!1 &776854234583202960
 GameObject:
   m_ObjectHideFlags: 0
