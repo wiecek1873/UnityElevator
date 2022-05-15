@@ -6,11 +6,11 @@ public abstract class Interactable : MonoBehaviour
 
 	public virtual void OnFocus()
 	{
-
+		//todo
 	}
 
 	public virtual void OnFocusExit()
 	{
-
+		//todo
 	}
 }
