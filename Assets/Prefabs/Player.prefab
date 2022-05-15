@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 8732072541762801938}
   - component: {fileID: 1078998607}
   - component: {fileID: 1078998608}
+  - component: {fileID: 1078998609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Character
@@ -298,7 +299,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!143 &8732072541762801950
 CharacterController:
@@ -315,7 +316,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.005
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8732072541762801938
@@ -362,6 +363,23 @@ MonoBehaviour:
   _camera: {fileID: 963194228}
   _verticalSensitivity: 1
   _rotationBounds: {x: -90, y: 50}
+--- !u!114 &1078998609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732072541762801951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a88d55f6f03e2489636c7433a29271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _origin: {fileID: 963194228}
+  _targetLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  _maxDistance: 5
 --- !u!1 &8732072542034572645
 GameObject:
   m_ObjectHideFlags: 0
