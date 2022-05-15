@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ElevatorDoorsHandler : MonoBehaviour
+public class ElevatorDoorsTriggerHandler : MonoBehaviour
 {
 	public event Action CharacterBetweenDoorsEntered;
 	public event Action CharacterBetweenDoorsExited;

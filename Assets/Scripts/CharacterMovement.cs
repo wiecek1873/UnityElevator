@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterMovementController : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
 	[SerializeField] private CharacterController _characterController;
 	[SerializeField] private float _playerSpeed = 2.0f;
