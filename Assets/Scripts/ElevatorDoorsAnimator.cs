@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class ElevatorDoorsAnimator : MonoBehaviour
 {
-	[SerializeField] private ElevatorDoorsHandler _elevatorDoorsHandler;
+	[SerializeField] private ElevatorDoorsTriggerHandler _elevatorDoorsTriggerHandler;
 	[SerializeField] private Animator _animator;
 	[SerializeField] private string _animatorParameterName;
 
@@ -42,7 +42,7 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 
 	private void Start()
 	{
-		_elevatorDoorsHandler.CharacterBetweenDoorsEntered += OnCharacterBetweenDoorsEntered;
-		_elevatorDoorsHandler.CharacterBetweenDoorsExited += OnCharacterBetweenDoorsExited;
+		_elevatorDoorsTriggerHandler.CharacterBetweenDoorsEntered += OnCharacterBetweenDoorsEntered;
+		_elevatorDoorsTriggerHandler.CharacterBetweenDoorsExited += OnCharacterBetweenDoorsExited;
 	}
 }
