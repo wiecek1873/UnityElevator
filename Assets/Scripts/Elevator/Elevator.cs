@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -8,6 +9,8 @@ public class Elevator : MonoBehaviour
 	public bool IsMoving { get; private set; }
 	public bool IsMovingUp { get; private set; }
 
+	[SerializeField] private Rigidbody _rigidbody;
+	[SerializeField] private ElevatorDoorsAnimator _elevatorDoorsAnimator;
 	[SerializeField] private float _speed = 2f;
 
 	private List<ElevatorFloor> _floorsToVisit;
@@ -22,13 +25,18 @@ public class Elevator : MonoBehaviour
 		_floorsToVisit.Add(elevatorFloor);
 	}
 
-	private void MoveToNextFloor()
+	private IEnumerator MoveToNextFloor()
 	{
 		ElevatorFloor floorToVisit = _floorsToVisit.First();
 		_floorsToVisit.RemoveAt(0);
 
+		_elevatorDoorsAnimator.CloseDoors();
+
+		while (!_elevatorDoorsAnimator.DoorsAreClosed)
+			yield return null;
+
 		float moveDuration = Vector3.Distance(transform.position, floorToVisit.ElevatorPosition) / _speed;
-		transform.DOMove(floorToVisit.ElevatorPosition, moveDuration)
+		_rigidbody.DOMove(floorToVisit.ElevatorPosition, moveDuration)
 			.SetEase(Ease.InOutQuart)
 			.SetUpdate(UpdateType.Fixed);
 	}
@@ -49,7 +57,7 @@ public class Elevator : MonoBehaviour
 	{
 		if (!IsMoving && _floorsToVisit.Count > 0)
 		{
-			MoveToNextFloor();
+			StartCoroutine(MoveToNextFloor());
 			IsMoving = true;
 		}
 	}
