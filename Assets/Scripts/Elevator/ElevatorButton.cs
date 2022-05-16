@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElevatorButton : Interactable
 {
+	[Header("Elevator button")]
 	[SerializeField] private Elevator _elevator;
 	[SerializeField] private ElevatorFloor _elevatorFloor;
 

@@ -12,7 +12,7 @@ public class CharacterRaycaster : MonoBehaviour
 
 	private void OnRaycastHit(RaycastHit raycastHit)
 	{
-		if(CurrentFocus != null)
+		if (CurrentFocus != null)
 		{
 			if (CurrentFocus.gameObject == raycastHit.collider.gameObject)
 				return;
@@ -41,7 +41,13 @@ public class CharacterRaycaster : MonoBehaviour
 		else
 			OnRaycastMiss();
 
-		if (CurrentFocus != null && Input.GetMouseButtonUp(0))
-			CurrentFocus.Use();
+		if (CurrentFocus == null)
+			return;
+
+		if (Input.GetMouseButton(0))
+			CurrentFocus.OnMouseButtonDown();
+
+		if (Input.GetMouseButtonUp(0))
+			CurrentFocus.OnMouseButtonUp();
 	}
 }
