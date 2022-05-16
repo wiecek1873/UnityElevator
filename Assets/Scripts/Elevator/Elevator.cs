@@ -23,6 +23,10 @@ public class Elevator : MonoBehaviour
 	[SerializeField] private float _speed = 2f;
 	[SerializeField] private Ease _moveEase = Ease.Linear;
 	[SerializeField] private float _waitTime = 1f;
+	[Header("Sounds")]
+	[SerializeField] private AudioSource _startSound;
+	[SerializeField] private AudioSource _movingSound;
+	[SerializeField] private AudioSource _stopSound;
 
 	private List<ElevatorFloor> _floorsToVisit;
 
@@ -44,6 +48,9 @@ public class Elevator : MonoBehaviour
 
 		float moveDuration = Vector3.Distance(transform.position, floorToVisit.ElevatorPosition) / _speed;
 
+		_startSound.Play();
+		_movingSound.PlayDelayed(_startSound.time);
+
 		_rigidbody.DOMove(floorToVisit.ElevatorPosition, moveDuration)
 			.SetEase(_moveEase)
 			.SetUpdate(UpdateType.Fixed)
@@ -54,6 +61,8 @@ public class Elevator : MonoBehaviour
 	{
 		_floorsToVisit.Remove(floor);
 		CurrentFloorNumber = floor.FloorNumber;
+
+		_stopSound.Play();
 
 		yield return WaitForDoorsOpen();
 
@@ -102,10 +111,10 @@ public class Elevator : MonoBehaviour
 	private void AddToVisit(ElevatorFloor element)
 	{
 		_floorsToVisit.Add(element);
-		SortToVisit();
+		SortFloorsToVisit();
 	}
 
-	private void SortToVisit()
+	private void SortFloorsToVisit()
 	{
 
 	}
