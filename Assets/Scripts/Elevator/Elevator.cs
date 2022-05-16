@@ -17,6 +17,8 @@ public class Elevator : MonoBehaviour
 
 	public void Call(ElevatorFloor elevatorFloor)
 	{
+		_elevatorDoorsAnimator.CloseDoors();
+
 		if (_floorsToVisit.Contains(elevatorFloor))
 			return;
 
@@ -38,15 +40,14 @@ public class Elevator : MonoBehaviour
 		float moveDuration = Vector3.Distance(transform.position, floorToVisit.ElevatorPosition) / _speed;
 		_rigidbody.DOMove(floorToVisit.ElevatorPosition, moveDuration)
 			.SetEase(Ease.InOutQuart)
-			.SetUpdate(UpdateType.Fixed);
+			.SetUpdate(UpdateType.Fixed)
+			.OnComplete(() => OnMoveComplete());
 	}
 
 	private void OnMoveComplete()
 	{
-
+		_elevatorDoorsAnimator.OpenDoors();
 	}
-
-
 
 	private void Start()
 	{
