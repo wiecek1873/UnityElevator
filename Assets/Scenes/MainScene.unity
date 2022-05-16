@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339055626}
     m_Modifications:
+    - target: {fileID: 3615223840073019179, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: m_text
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5777218399824636382, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_Name
       value: Floor (4)
@@ -177,6 +181,18 @@ PrefabInstance:
     - target: {fileID: 5777218399824636383, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevator
+      value: 
+      objectReference: {fileID: 927062359}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.FloorNumber
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.ElevatorPosition.y
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
@@ -303,6 +319,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339055626}
     m_Modifications:
+    - target: {fileID: 3615223840073019179, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5777218399824636382, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_Name
       value: Floor (5)
@@ -351,6 +371,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5777218401303683611, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevator
+      value: 
+      objectReference: {fileID: 927062359}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.FloorNumber
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.ElevatorPosition.y
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
 --- !u!4 &401093351 stripped
@@ -365,6 +401,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339055626}
     m_Modifications:
+    - target: {fileID: 3615223840073019179, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5777218399824636382, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_Name
       value: Floor (3)
@@ -412,6 +452,18 @@ PrefabInstance:
     - target: {fileID: 5777218399824636383, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevator
+      value: 
+      objectReference: {fileID: 927062359}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.FloorNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.ElevatorPosition.y
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
@@ -597,6 +649,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339055626}
     m_Modifications:
+    - target: {fileID: 3615223840073019179, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5777218399824636382, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_Name
       value: Floor (2)
@@ -644,6 +700,18 @@ PrefabInstance:
     - target: {fileID: 5777218399824636383, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevator
+      value: 
+      objectReference: {fileID: 927062359}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.FloorNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.ElevatorPosition.y
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
@@ -734,6 +802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 339055626}
     m_Modifications:
+    - target: {fileID: 3615223840073019179, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5777218399824636382, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_Name
       value: Floor (1)
@@ -781,6 +853,18 @@ PrefabInstance:
     - target: {fileID: 5777218399824636383, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevator
+      value: 
+      objectReference: {fileID: 927062359}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.FloorNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevatorFloor.ElevatorPosition.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
@@ -982,67 +1066,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0e5a7d364d1004dbb1df605f55bb38, type: 3}
---- !u!1001 &5453513593353141618
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5453513593731278916, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_Name
-      value: ElevatorButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.8810022
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.265006
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278920, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5453513593731278921, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
-      propertyPath: _elevator
-      value: 
-      objectReference: {fileID: 927062359}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ff6fe2d64d6535e47980ba6b968df855, type: 3}
 --- !u!1001 &5777218401434598610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1098,6 +1121,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6488693543598613673, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
+      propertyPath: _elevator
+      value: 
+      objectReference: {fileID: 927062359}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb43d0ada700174095b6567bd608458, type: 3}
 --- !u!1001 &8732072541020201129
