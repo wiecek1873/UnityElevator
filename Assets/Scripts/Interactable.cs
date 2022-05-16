@@ -4,8 +4,8 @@ public abstract class Interactable : MonoBehaviour
 {
 	[Header("Interactable")]
 	[SerializeField] private QuickOutline _quickOutline;
-	[SerializeField] private Color _focusColor = Color.green;
-	[SerializeField] private Color _mouseButtonDown = Color.blue;
+	[SerializeField] private Color _focusColor = Color.cyan;
+	[SerializeField] private Color _mouseButtonDown = Color.green;
 
 	public abstract void Use();
 
