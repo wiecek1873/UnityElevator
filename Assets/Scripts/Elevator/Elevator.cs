@@ -4,71 +4,123 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum ElevatorDirection
+{
+	Up,
+	Down,
+	Idle
+}
+
 public class Elevator : MonoBehaviour
 {
-	public bool IsMoving { get; private set; }
-	public bool IsMovingUp { get; private set; }
+	//public event Action<ElevatorFloor> OnElevatorArrival();
+
+	[HideInInspector] public ElevatorDirection ElevatorDirection { get; private set; }
+	[HideInInspector] public int CurrentFloorNumber { get; private set; }
 
 	[SerializeField] private Rigidbody _rigidbody;
 	[SerializeField] private ElevatorDoorsAnimator _elevatorDoorsAnimator;
 	[SerializeField] private float _speed = 2f;
-	[SerializeField] private float _waitTime = 2.5f;
+	[SerializeField] private Ease _moveEase = Ease.Linear;
+	[SerializeField] private float _waitTime = 1f;
 
 	private List<ElevatorFloor> _floorsToVisit;
 
-	public void Call(ElevatorFloor elevatorFloor)
+	public void Call(ElevatorFloor floorToVisit)
 	{
-		_elevatorDoorsAnimator.CloseDoors();
+		TryToAddVisit(floorToVisit);
 
-		if (_floorsToVisit.Contains(elevatorFloor))
-			return;
-
-		///todo floors sorting
-
-		_floorsToVisit.Add(elevatorFloor);
+		if (_floorsToVisit.Count > 0 && ElevatorDirection == ElevatorDirection.Idle)
+			StartCoroutine(MoveToNextFloor());
 	}
 
 	private IEnumerator MoveToNextFloor()
 	{
 		ElevatorFloor floorToVisit = _floorsToVisit.First();
-		_floorsToVisit.RemoveAt(0);
 
-		_elevatorDoorsAnimator.CloseDoors();
+		SetElevatorDirection(floorToVisit);
 
-		while (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Closed)
-			yield return null;
+		yield return WaitForDoorsClose();
 
 		float moveDuration = Vector3.Distance(transform.position, floorToVisit.ElevatorPosition) / _speed;
 
 		_rigidbody.DOMove(floorToVisit.ElevatorPosition, moveDuration)
-			.SetEase(Ease.InOutQuart)
+			.SetEase(_moveEase)
 			.SetUpdate(UpdateType.Fixed)
-			.OnComplete(() => StartCoroutine(OnMoveComplete()));
+			.OnComplete(() => StartCoroutine(OnMoveComplete(floorToVisit)));
 	}
 
-	private IEnumerator OnMoveComplete()
+	private IEnumerator OnMoveComplete(ElevatorFloor floor)
 	{
-		_elevatorDoorsAnimator.OpenDoors();
+		_floorsToVisit.Remove(floor);
+		CurrentFloorNumber = floor.FloorNumber;
 
-		while (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Opened)
-			yield return null;
+		yield return WaitForDoorsOpen();
+
+		ElevatorDirection = ElevatorDirection.Idle;
 
 		yield return new WaitForSeconds(_waitTime);
 
-		IsMoving = false;
+		if (_floorsToVisit.Count > 0)
+			StartCoroutine(MoveToNextFloor());
+	}
+
+	private IEnumerator WaitForDoorsClose()
+	{
+		_elevatorDoorsAnimator.TryCloseDoors();
+		while (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Closed)
+		{
+			if (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Working)
+			{
+				yield return new WaitForSeconds(_waitTime);
+				_elevatorDoorsAnimator.TryCloseDoors();
+			}
+			yield return null;
+		}
+	}
+
+	private IEnumerator WaitForDoorsOpen()
+	{
+		_elevatorDoorsAnimator.OpenDoors();
+		while (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Opened)
+		{
+			if (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Working)
+			{
+				yield return new WaitForSeconds(_waitTime);
+				_elevatorDoorsAnimator.OpenDoors();
+			}
+			yield return null;
+		}
+	}
+
+	private void TryToAddVisit(ElevatorFloor element)
+	{
+		if (!_floorsToVisit.Contains(element) && element.FloorNumber != CurrentFloorNumber)
+			AddToVisit(element);
+	}
+
+	private void AddToVisit(ElevatorFloor element)
+	{
+		_floorsToVisit.Add(element);
+		SortToVisit();
+	}
+
+	private void SortToVisit()
+	{
+
+	}
+
+	private void SetElevatorDirection(ElevatorFloor floorToVisit)
+	{
+		if (floorToVisit.FloorNumber > CurrentFloorNumber)
+			ElevatorDirection = ElevatorDirection.Up;
+		else if (floorToVisit.FloorNumber < CurrentFloorNumber)
+			ElevatorDirection = ElevatorDirection.Down;
 	}
 
 	private void Start()
 	{
 		_floorsToVisit = new List<ElevatorFloor>();
-	}
-
-	private void Update()
-	{
-		if (!IsMoving && _floorsToVisit.Count > 0)
-		{
-			StartCoroutine(MoveToNextFloor());
-			IsMoving = true;
-		}
+		ElevatorDirection = ElevatorDirection.Idle;
 	}
 }

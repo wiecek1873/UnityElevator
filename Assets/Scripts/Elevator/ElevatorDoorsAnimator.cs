@@ -24,41 +24,43 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 	{
 		DoorsState = ElevatorDoorsState.Working;
 
+		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
+		float remainingDuration = (1f - _doorsOpenness) * _closeTime;
+
 		_activeTween.Kill();
 
-		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
-
-		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 1, _closeTime - _doorsOpenness)
+		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 1, remainingDuration)
 			.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness))
 			.OnComplete(() =>DoorsState = ElevatorDoorsState.Opened);
+	}
+
+	public void TryCloseDoors()
+	{
+		if (!_elevatorDoorsTriggerHandler.CharacterBetweenDoors)
+			CloseDoors();
 	}
 
 	public void CloseDoors()
 	{
 		DoorsState = ElevatorDoorsState.Working;
 
+		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
+		float remainingDuration = _doorsOpenness * _closeTime;
+
 		_activeTween.Kill();
 
-		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
-
-		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 0, _doorsOpenness * _closeTime)
+		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 0, remainingDuration)
 			.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness))
 			.OnComplete(() => DoorsState = ElevatorDoorsState.Closed);
 	}
 
-	protected virtual void OnCharacterBetweenDoorsEntered()
+	private void OnCharacterBetweenDoorsEntered()
 	{
 		OpenDoors();
-	}
-
-	protected virtual void OnCharacterBetweenDoorsExited()
-	{
-		//CloseDoors();
 	}
 
 	private void Start()
 	{
 		_elevatorDoorsTriggerHandler.CharacterBetweenDoorsEntered += OnCharacterBetweenDoorsEntered;
-		_elevatorDoorsTriggerHandler.CharacterBetweenDoorsExited += OnCharacterBetweenDoorsExited;
 	}
 }
