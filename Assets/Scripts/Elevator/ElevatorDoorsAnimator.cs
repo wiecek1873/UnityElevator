@@ -35,6 +35,8 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 
 	public void CloseDoors()
 	{
+		DoorsState = ElevatorDoorsState.Working;
+
 		_activeTween.Kill();
 
 		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
