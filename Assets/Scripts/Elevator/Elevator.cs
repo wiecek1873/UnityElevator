@@ -12,6 +12,7 @@ public class Elevator : MonoBehaviour
 	[SerializeField] private Rigidbody _rigidbody;
 	[SerializeField] private ElevatorDoorsAnimator _elevatorDoorsAnimator;
 	[SerializeField] private float _speed = 2f;
+	[SerializeField] private float _waitTime = 2.5f;
 
 	private List<ElevatorFloor> _floorsToVisit;
 
@@ -34,19 +35,27 @@ public class Elevator : MonoBehaviour
 
 		_elevatorDoorsAnimator.CloseDoors();
 
-		while (!_elevatorDoorsAnimator.DoorsAreClosed)
+		while (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Closed)
 			yield return null;
 
 		float moveDuration = Vector3.Distance(transform.position, floorToVisit.ElevatorPosition) / _speed;
+
 		_rigidbody.DOMove(floorToVisit.ElevatorPosition, moveDuration)
 			.SetEase(Ease.InOutQuart)
 			.SetUpdate(UpdateType.Fixed)
-			.OnComplete(() => OnMoveComplete());
+			.OnComplete(() => StartCoroutine(OnMoveComplete()));
 	}
 
-	private void OnMoveComplete()
+	private IEnumerator OnMoveComplete()
 	{
 		_elevatorDoorsAnimator.OpenDoors();
+
+		while (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Opened)
+			yield return null;
+
+		yield return new WaitForSeconds(_waitTime);
+
+		IsMoving = false;
 	}
 
 	private void Start()
