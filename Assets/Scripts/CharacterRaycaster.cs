@@ -12,11 +12,13 @@ public class CharacterRaycaster : MonoBehaviour
 
 	private void OnRaycastHit(RaycastHit raycastHit)
 	{
-		if (CurrentFocus != null && CurrentFocus.gameObject == raycastHit.collider.gameObject)
-			return;
-
-		if (CurrentFocus != null)
-			CurrentFocus.OnFocusExit();
+		if(CurrentFocus != null)
+		{
+			if (CurrentFocus.gameObject == raycastHit.collider.gameObject)
+				return;
+			else
+				CurrentFocus.OnFocusExit();
+		}
 
 		CurrentFocus = raycastHit.collider.GetComponent<Interactable>();
 		CurrentFocus.OnFocus();
