@@ -16,14 +16,10 @@ public class ElevatorButton : Interactable
 	public override void OnFocus()
 	{
 		base.OnFocus();
-
-		Debug.Log("Focus");
 	}
 
 	public override void OnFocusExit()
 	{
 		base.OnFocusExit();
-
-		Debug.Log("FocusExit");
 	}
 }
