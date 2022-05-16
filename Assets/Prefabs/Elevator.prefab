@@ -749,8 +749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 3561982067100484491}
   _elevatorDoorsAnimator: {fileID: 830461792}
-  _speed: 4
-  _moveEase: 19
+  _speed: 5
+  _moveEase: 7
   _waitTime: 1
 --- !u!54 &3561982067100484491
 Rigidbody:
