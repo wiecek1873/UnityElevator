@@ -1016,6 +1016,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 927062359, guid: 7e0e5a7d364d1004dbb1df605f55bb38, type: 3}
+      propertyPath: _speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 776854234583202960, guid: 7e0e5a7d364d1004dbb1df605f55bb38, type: 3}
       propertyPath: m_Name
       value: Elevator
