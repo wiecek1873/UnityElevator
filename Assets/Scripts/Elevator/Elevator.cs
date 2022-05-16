@@ -49,7 +49,8 @@ public class Elevator : MonoBehaviour
 		float moveDuration = Vector3.Distance(transform.position, floorToVisit.ElevatorPosition) / _speed;
 
 		_startSound.Play();
-		_movingSound.PlayDelayed(_startSound.time);
+		yield return new WaitForSeconds(_startSound.clip.length);
+		_movingSound.Play();
 
 		_rigidbody.DOMove(floorToVisit.ElevatorPosition, moveDuration)
 			.SetEase(_moveEase)
@@ -62,6 +63,7 @@ public class Elevator : MonoBehaviour
 		_floorsToVisit.Remove(floor);
 		CurrentFloorNumber = floor.FloorNumber;
 
+		_movingSound.Stop();
 		_stopSound.Play();
 
 		yield return WaitForDoorsOpen();
