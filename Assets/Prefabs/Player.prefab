@@ -210,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc408b3453fa95543b940767bfd0570a, type: 2}
+  - {fileID: 2100000, guid: 557721093ef95d148bdecb6215d5ab72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -282,10 +282,10 @@ MonoBehaviour:
   _groundCheck: {fileID: 2081641146}
   _gravity: -9.81
   _speed: 10
+  _jumpHeight: 1
   _groundMask:
     serializedVersion: 2
     m_Bits: 128
-  _jumpHeight: 1
   _groundDistance: 0.4
   _slopeRaycastDistance: 0.5
   _platformMask:
