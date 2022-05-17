@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _groundDistance = 0.4f;
 	[Header("Slopes")]
 	[SerializeField] private float _slopeRaycastDistance = 0.5f;
+	
 
 	private Vector3 _velocity;
 	private bool _isGrounded;
