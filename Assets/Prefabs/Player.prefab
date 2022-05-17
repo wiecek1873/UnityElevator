@@ -317,7 +317,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.005
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8732072541762801938
 MonoBehaviour:
@@ -334,6 +334,9 @@ MonoBehaviour:
   _characterController: {fileID: 8732072541762801950}
   _playerSpeed: 10
   _jumpHeight: 1
+  _gravity: -50
+  _slopeRaycastDistance: 0.35
+  _slopeForce: 10
 --- !u!114 &1078998607
 MonoBehaviour:
   m_ObjectHideFlags: 0

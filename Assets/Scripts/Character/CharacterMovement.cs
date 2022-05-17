@@ -5,20 +5,27 @@ public class CharacterMovement : MonoBehaviour
 	[SerializeField] private CharacterController _characterController;
 	[SerializeField] private float _playerSpeed = 2.0f;
 	[SerializeField] private float _jumpHeight = 1.0f;
+	[SerializeField] private float _gravity = -50f;
+	[SerializeField] private float _slopeRaycastDistance = 1f;
+	[SerializeField] private float _slopeForce = 10f;
 
-	private bool _characterGrounded;
-	private float _groundRaycastDistance = 0.01f;
 	private Vector3 _playerVelocity;
 
 	private bool IsGrounded()
 	{
+		return _characterController.isGrounded;
+	}
+
+	private bool OnSlope()
+	{
 		Vector3 characterBase = _characterController.transform.position + Vector3.down * _characterController.height / 2f;
-		float raycastDistance = _groundRaycastDistance + _characterController.skinWidth;
+		float raycastDistance = _slopeRaycastDistance + _characterController.skinWidth;
 
 		Ray ray = new Ray(characterBase, Vector3.down * raycastDistance);
 
-		Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 0.01f);
-		return Physics.Raycast(ray, raycastDistance);
+		if (Physics.Raycast(ray, out RaycastHit raycastHit, raycastDistance))
+			return raycastHit.normal != Vector3.up;
+		return false;
 	}
 
 	private void MoveHorizontally(Vector3 direction)
@@ -44,17 +51,20 @@ public class CharacterMovement : MonoBehaviour
 
 	private void Update()
 	{
-		_characterGrounded = IsGrounded();
+		bool characterGrounded = IsGrounded();
 
-		if (_characterGrounded && _playerVelocity.y < 0)
+		if (characterGrounded && _playerVelocity.y < 0)
 			ResetVelocityOnGround();
 
 		Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
 		MoveHorizontally(moveDirection);
 
-		if (Input.GetButtonDown("Jump") && _characterGrounded)
+		if (Input.GetButtonDown("Jump") && characterGrounded)
 			Jump();
+
+		if (OnSlope() && _playerVelocity.y >= 0)
+			_characterController.Move(Vector3.down * Time.deltaTime * _slopeForce);
 
 		HandleGravity();
 
