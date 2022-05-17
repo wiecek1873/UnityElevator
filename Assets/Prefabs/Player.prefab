@@ -114,6 +114,36 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
+--- !u!1 &2081641145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081641146}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2081641146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081641145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8732072541762801939}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8732072541762801951
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +157,7 @@ GameObject:
   - component: {fileID: 8732072541762801937}
   - component: {fileID: 8732072541762801941}
   - component: {fileID: 8732072541762801950}
-  - component: {fileID: 8732072541762801938}
+  - component: {fileID: 2094489129940300275}
   - component: {fileID: 1078998609}
   - component: {fileID: 1517316828}
   m_Layer: 0
@@ -149,6 +179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 83826724}
+  - {fileID: 2081641146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -213,10 +244,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 1
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!143 &8732072541762801950
 CharacterController:
   m_ObjectHideFlags: 0
@@ -231,11 +262,11 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8732072541762801938
+--- !u!114 &2094489129940300275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,16 +275,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8732072541762801951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dae6e85dd16d6246bd450bfb7c01143, type: 3}
+  m_Script: {fileID: 11500000, guid: 909db0046c6fcd74eb04c06af81a6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 8732072541762801950}
-  _playerSpeed: 10
+  _groundCheck: {fileID: 2081641146}
+  _gravity: -9.81
+  _speed: 10
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 128
   _jumpHeight: 1
-  _groundRaycastDistance: 0.075
-  _slopeRaycastDistance: 0.35
-  _slopeForce: 10
-  _platformRaycastDistance: 0.35
+  _groundDistance: 0.4
 --- !u!114 &1078998609
 MonoBehaviour:
   m_ObjectHideFlags: 0
