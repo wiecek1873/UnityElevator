@@ -1016,14 +1016,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 776854232711296002, guid: 7e0e5a7d364d1004dbb1df605f55bb38, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 776854232711296002, guid: 7e0e5a7d364d1004dbb1df605f55bb38, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 776854234583202960, guid: 7e0e5a7d364d1004dbb1df605f55bb38, type: 3}
       propertyPath: m_Name
       value: Elevator
@@ -1142,14 +1134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8732072541762801938, guid: 481a7f1811fe2cd4fa9dcc4ecdd00e1f, type: 3}
-      propertyPath: _groundRaycastDistance
-      value: 0.075
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732072541762801938, guid: 481a7f1811fe2cd4fa9dcc4ecdd00e1f, type: 3}
-      propertyPath: _platformRaycastDistance
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 8732072541762801939, guid: 481a7f1811fe2cd4fa9dcc4ecdd00e1f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1192,10 +1176,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8732072541762801939, guid: 481a7f1811fe2cd4fa9dcc4ecdd00e1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732072541762801941, guid: 481a7f1811fe2cd4fa9dcc4ecdd00e1f, type: 3}
-      propertyPath: m_Interpolate
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8732072541762801951, guid: 481a7f1811fe2cd4fa9dcc4ecdd00e1f, type: 3}

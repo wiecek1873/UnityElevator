@@ -115,7 +115,6 @@ public class CharacterMovement : MonoBehaviour
 			_characterController.Move(Vector3.down * Time.deltaTime * _slopeForce);
 
 		MoveWithPlatform();
-
 		HandleGravity();
 
 		_characterController.Move(_playerVelocity * Time.deltaTime);
