@@ -288,6 +288,10 @@ MonoBehaviour:
   _jumpHeight: 1
   _groundDistance: 0.4
   _slopeRaycastDistance: 0.5
+  _platformMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _platformRaycastDistance: 2
 --- !u!114 &1078998609
 MonoBehaviour:
   m_ObjectHideFlags: 0

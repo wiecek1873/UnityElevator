@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,15 +6,21 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private Transform _groundCheck;
 	[SerializeField] private float _gravity = -9.81f;
 	[SerializeField] private float _speed = 10f;
-	[SerializeField] private LayerMask _groundMask;
 	[SerializeField] private float _jumpHeight = 1f;
+	[Header("Ground")]
+	[SerializeField] private LayerMask _groundMask;
 	[SerializeField] private float _groundDistance = 0.4f;
 	[Header("Slopes")]
 	[SerializeField] private float _slopeRaycastDistance = 0.5f;
-	
+	[Header("Platforms")]
+	[SerializeField] private LayerMask _platformMask;
+	[SerializeField] private float _platformRaycastDistance = 0.4f;
 
 	private Vector3 _velocity;
 	private bool _isGrounded;
+	private bool _isOnPlatform;
+	private Transform _previousPlatform;
+	private Vector3 _previousPlatformPosition;
 
 	private bool IsGrounded()
 	{
@@ -46,6 +50,42 @@ public class PlayerMovement : MonoBehaviour
 		return transform.right * x + transform.forward * z;
 	}
 
+	private bool IsOnPlatform()
+	{
+		return Physics.CheckSphere(_groundCheck.position, _platformRaycastDistance, _platformMask);
+	}
+
+	private void CopyPlatformMove()
+	{
+		Ray ray = new Ray(_groundCheck.position, Vector3.down);
+
+		if (!Physics.Raycast(ray, out RaycastHit raycastHit, _platformRaycastDistance))
+		{
+			_previousPlatform = null;
+			_previousPlatformPosition = Vector3.zero;
+			return;
+		}
+
+		if (_previousPlatform == null)
+		{
+			_previousPlatform = raycastHit.collider.transform;
+			_previousPlatformPosition = _previousPlatform.position;
+		}
+		else
+		{
+			if (_previousPlatform == raycastHit.collider.transform)
+			{
+				_characterController.Move(_previousPlatform.position - _previousPlatformPosition);
+				_previousPlatformPosition = _previousPlatform.position;
+			}
+			else
+			{
+				_previousPlatform = raycastHit.collider.transform;
+				_previousPlatformPosition = _previousPlatform.position;
+			}
+		}
+	}
+
 	private Vector3 ChangeDirectionOnSlope(Vector3 moveDirection)
 	{
 		Ray ray = new Ray(_groundCheck.position, Vector3.down);
@@ -63,8 +103,14 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
 	{
 		_isGrounded = IsGrounded();
+		_isOnPlatform = IsOnPlatform();
 
-		if (_isGrounded && _velocity.y < 0)
+		bool isOnSurface = _isGrounded || _isOnPlatform;
+
+		if (_isOnPlatform)
+			CopyPlatformMove();
+
+		if (isOnSurface && _velocity.y < 0)
 			ResetGravityOnGround();
 
 		Vector3 moveDirection = GetMoveDirection();
@@ -72,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
 		_characterController.Move(_speed * Time.deltaTime * moveDirection);
 
-		if (Input.GetButtonDown("Jump") && _isGrounded)
+		if (Input.GetButtonDown("Jump") && isOnSurface)
 			Jump();
 
 		ApplyGravity();
