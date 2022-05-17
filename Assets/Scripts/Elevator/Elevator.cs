@@ -13,8 +13,6 @@ public enum ElevatorDirection
 
 public class Elevator : MonoBehaviour
 {
-	//public event Action<ElevatorFloor> OnElevatorArrival();
-
 	[HideInInspector] public ElevatorDirection ElevatorDirection { get; private set; }
 	[HideInInspector] public int CurrentFloorNumber { get; private set; }
 
@@ -118,7 +116,7 @@ public class Elevator : MonoBehaviour
 
 	private void SortFloorsToVisit()
 	{
-
+		//todo Custom floors to visit order
 	}
 
 	private void SetElevatorDirection(ElevatorFloor floorToVisit)
