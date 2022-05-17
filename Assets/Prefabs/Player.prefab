@@ -287,6 +287,7 @@ MonoBehaviour:
     m_Bits: 128
   _jumpHeight: 1
   _groundDistance: 0.4
+  _slopeRaycastDistance: 0.5
 --- !u!114 &1078998609
 MonoBehaviour:
   m_ObjectHideFlags: 0
