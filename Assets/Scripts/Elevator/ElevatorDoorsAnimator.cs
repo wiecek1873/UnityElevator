@@ -65,8 +65,13 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 		_animatorParameterHash = Animator.StringToHash(_animatorParameterName);
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
 		_elevatorDoorsTriggerHandler.CharacterBetweenDoorsEntered += OnCharacterBetweenDoorsEntered;
+	}
+
+	private void OnDestroy()
+	{
+		_elevatorDoorsTriggerHandler.CharacterBetweenDoorsEntered -= OnCharacterBetweenDoorsEntered;
 	}
 }
