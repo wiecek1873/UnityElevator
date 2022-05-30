@@ -10,14 +10,4 @@ public class ElevatorButton : Interactable
 	{
 		_elevator.Call(_elevatorFloor);
 	}
-
-	public override void OnFocus()
-	{
-		base.OnFocus();
-	}
-
-	public override void OnFocusExit()
-	{
-		base.OnFocusExit();
-	}
 }
