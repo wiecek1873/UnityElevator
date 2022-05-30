@@ -8,17 +8,20 @@ public class CharacterRaycaster : MonoBehaviour
 	[SerializeField] private LayerMask _targetLayers;
 	[SerializeField] private float _maxDistance = 5f;
 
-	private void OnRaycastHit(RaycastHit raycastHit)
+	private Ray _forwardRay;
+	private RaycastHit _raycastHit;
+
+	private void OnRaycastHit()
 	{
 		if (CurrentFocus != null)
 		{
-			if (CurrentFocus.gameObject == raycastHit.collider.gameObject)
+			if (CurrentFocus.gameObject == _raycastHit.collider.gameObject)
 				return;
 			else
 				CurrentFocus.OnFocusExit();
 		}
 
-		CurrentFocus = raycastHit.collider.GetComponent<Interactable>();
+		CurrentFocus = _raycastHit.collider.GetComponent<Interactable>();
 		CurrentFocus.OnFocus();
 	}
 
@@ -32,10 +35,10 @@ public class CharacterRaycaster : MonoBehaviour
 
 	private void Update()
 	{
-		Ray ray = new Ray(_origin.position, _origin.forward);
+		_forwardRay = new Ray(_origin.position, _origin.forward);
 
-		if (Physics.Raycast(ray, out RaycastHit raycastHit, _maxDistance, _targetLayers))
-			OnRaycastHit(raycastHit);
+		if (Physics.Raycast(_forwardRay, out _raycastHit, _maxDistance, _targetLayers))
+			OnRaycastHit();
 		else
 			OnRaycastMiss();
 
