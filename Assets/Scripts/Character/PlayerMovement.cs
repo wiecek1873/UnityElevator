@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private CharacterController _characterController;
 	[SerializeField] private Transform _groundCheck;
+	[SerializeField] private float _velocityOnGround = -2f;
 	[SerializeField] private float _gravity = -9.81f;
 	[SerializeField] private float _speed = 10f;
 	[SerializeField] private float _jumpHeight = 1f;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool _isOnPlatform;
 	private Transform _previousPlatform;
 	private Vector3 _previousPlatformPosition;
+	private Ray _groundCheckRay;
 
 	private bool IsGrounded()
 	{
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void ResetGravityOnGround()
 	{
-		_velocity.y = -2f;
+		_velocity.y = _velocityOnGround;
 	}
 
 	private void Jump()
@@ -57,9 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void CopyPlatformMove()
 	{
-		Ray ray = new Ray(_groundCheck.position, Vector3.down);
-
-		if (!Physics.Raycast(ray, out RaycastHit raycastHit, _platformRaycastDistance))
+		if (!Physics.Raycast(_groundCheckRay, out RaycastHit raycastHit, _platformRaycastDistance))
 		{
 			_previousPlatform = null;
 			_previousPlatformPosition = Vector3.zero;
@@ -88,9 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private Vector3 ChangeDirectionOnSlope(Vector3 moveDirection)
 	{
-		Ray ray = new Ray(_groundCheck.position, Vector3.down);
-
-		if (!Physics.Raycast(ray, out RaycastHit raycastHit, _slopeRaycastDistance))
+		if (!Physics.Raycast(_groundCheckRay, out RaycastHit raycastHit, _slopeRaycastDistance))
 			return moveDirection;
 
 		if (raycastHit.normal == Vector3.up)
@@ -102,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
+		_groundCheckRay = new Ray(_groundCheck.position, Vector3.down);
+
 		_isGrounded = IsGrounded();
 		_isOnPlatform = IsOnPlatform();
 
