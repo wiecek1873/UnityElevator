@@ -17,6 +17,7 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 	[SerializeField] private string _animatorParameterName;
 	[SerializeField] private float _closeTime = 2.5f;
 
+	private int _animatorParameterHash;
 	private float _doorsOpenness = 1;
 	private Tween _activeTween;
 
@@ -24,13 +25,13 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 	{
 		DoorsState = ElevatorDoorsState.Working;
 
-		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
+		_doorsOpenness = _animator.GetFloat(_animatorParameterHash);
 		float remainingDuration = (1f - _doorsOpenness) * _closeTime;
 
 		_activeTween.Kill();
 
 		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 1, remainingDuration)
-			.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness))
+			.OnUpdate(() => _animator.SetFloat(_animatorParameterHash, _doorsOpenness))
 			.OnComplete(() =>DoorsState = ElevatorDoorsState.Opened);
 	}
 
@@ -44,19 +45,24 @@ public class ElevatorDoorsAnimator : MonoBehaviour
 	{
 		DoorsState = ElevatorDoorsState.Working;
 
-		_doorsOpenness = _animator.GetFloat(_animatorParameterName);
+		_doorsOpenness = _animator.GetFloat(_animatorParameterHash);
 		float remainingDuration = _doorsOpenness * _closeTime;
 
 		_activeTween.Kill();
 
 		_activeTween = DOTween.To(() => _doorsOpenness, x => _doorsOpenness = x, 0, remainingDuration)
-			.OnUpdate(() => _animator.SetFloat(_animatorParameterName, _doorsOpenness))
+			.OnUpdate(() => _animator.SetFloat(_animatorParameterHash, _doorsOpenness))
 			.OnComplete(() => DoorsState = ElevatorDoorsState.Closed);
 	}
 
 	private void OnCharacterBetweenDoorsEntered()
 	{
 		OpenDoors();
+	}
+
+	private void Awake()
+	{
+		_animatorParameterHash = Animator.StringToHash(_animatorParameterName);
 	}
 
 	private void Start()
