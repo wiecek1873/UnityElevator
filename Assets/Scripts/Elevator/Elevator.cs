@@ -27,6 +27,7 @@ public class Elevator : MonoBehaviour
 	[SerializeField] private AudioSource _stopSound;
 
 	private List<ElevatorFloor> _floorsToVisit;
+	private WaitForSeconds _waitTimeCoroutine;
 
 	public void Call(ElevatorFloor floorToVisit)
 	{
@@ -68,7 +69,7 @@ public class Elevator : MonoBehaviour
 
 		ElevatorDirection = ElevatorDirection.Idle;
 
-		yield return new WaitForSeconds(_waitTime);
+		yield return _waitTimeCoroutine;
 
 		if (_floorsToVisit.Count > 0)
 			StartCoroutine(MoveToNextFloor());
@@ -81,7 +82,7 @@ public class Elevator : MonoBehaviour
 		{
 			if (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Working)
 			{
-				yield return new WaitForSeconds(_waitTime);
+				yield return _waitTimeCoroutine;
 				_elevatorDoorsAnimator.TryCloseDoors();
 			}
 			yield return null;
@@ -95,7 +96,7 @@ public class Elevator : MonoBehaviour
 		{
 			if (_elevatorDoorsAnimator.DoorsState != ElevatorDoorsState.Working)
 			{
-				yield return new WaitForSeconds(_waitTime);
+				yield return _waitTimeCoroutine;
 				_elevatorDoorsAnimator.OpenDoors();
 			}
 			yield return null;
@@ -131,5 +132,6 @@ public class Elevator : MonoBehaviour
 	{
 		_floorsToVisit = new List<ElevatorFloor>();
 		ElevatorDirection = ElevatorDirection.Idle;
+		_waitTimeCoroutine = new WaitForSeconds(_waitTime);
 	}
 }
